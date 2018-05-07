@@ -82,13 +82,13 @@ def _impl_libcxx_library(ctx):
     env = {"PWD": "/proc/self/cwd"},
   )
 
-  ctx.actions.run(
-    outputs = [ ctx.outputs.out ],
-    inputs = obj_files + deps_list,
-    arguments = ["rcsD", ctx.outputs.out.path] + [obj.path for obj in obj_files], 
-    executable = "external/co_vsco_bazel_toolchains/tools/cpp/tool_wrappers/linux_x64/chromium_clang",
-    env = {"PWD": "/proc/self/cwd"},
-  )
+  #ctx.actions.run(
+  #  outputs = [ ctx.outputs.out ],
+  #  inputs = obj_files + deps_list,
+  #  arguments = ["rcsD", ctx.outputs.out.path] + [obj.path for obj in obj_files], 
+  #  executable = "external/co_vsco_bazel_toolchains/tools/cpp/tool_wrappers/linux_x64/chromium_clang",
+  #  env = {"PWD": "/proc/self/cwd"},
+  #)
 
 libcxx_library = rule(
   _impl_libcxx_library,
@@ -100,6 +100,6 @@ libcxx_library = rule(
     "deps": attr.label_list(),
   },
   outputs = {
-    "out": "lib%{name}.a",
+    "out": "libtest.so",
   },
 )
