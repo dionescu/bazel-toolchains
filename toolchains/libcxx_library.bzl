@@ -77,7 +77,7 @@ def _impl_libcxx_library(ctx):
   ctx.actions.run(
     outputs = [ ctx.outputs.out ],
     inputs = obj_files + deps_list,
-    arguments = [obj.path for obj in obj_files]+["-shared", "-o", ctx.outputs.out.path],
+    arguments = [obj.path for obj in obj_files]+["-fsanitize=thread", "-shared", "-o", ctx.outputs.out.path],
     executable = "external/co_vsco_bazel_toolchains/tools/cpp/tool_wrappers/linux_x64/chromium_clang",
     env = {"PWD": "/proc/self/cwd"},
   )
